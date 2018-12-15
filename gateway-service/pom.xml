@@ -21,9 +21,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.softplan.unic</groupId>
+            <artifactId>softplan-unic-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>org.springframework.boot</artifactId>
+                    <groupId>spring-boot-starter-web</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
