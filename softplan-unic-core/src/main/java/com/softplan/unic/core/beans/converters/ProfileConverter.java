@@ -1,6 +1,6 @@
 package com.softplan.unic.core.beans.converters;
 
-import com.creativedrive.cora.core.beans.enums.ProfileType;
+import com.softplan.unic.core.beans.enums.ProfileType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
