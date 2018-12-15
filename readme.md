@@ -1,7 +1,7 @@
 <h1 id="api-boleto-contaazul">API SIENGE MICRO-SERVICES</h1>
 
 <a href="https://travis-ci.com/Cafecanudo/softplan-UNIC">
-  <img src="https://travis-ci.com/Cafecanudo/softplan-UNIC.svg?branch=master" alt="Build Status">
+  <img src="https://travis-ci.com/Cafecanudo/softplan-UNIC.svg?branch=develop" alt="Build Status">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=ncloc">
