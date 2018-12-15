@@ -8,7 +8,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        
+        <module>softplan-unic-core</module>
+        <module>configuration-service</module>
+        <module>discovery-service</module>
+        <module>gateway-service</module>
     </modules>
 
 </project>
