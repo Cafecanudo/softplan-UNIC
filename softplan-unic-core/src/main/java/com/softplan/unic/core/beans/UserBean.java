@@ -1,9 +1,9 @@
 package com.softplan.unic.core.beans;
 
-import com.creativedrive.cora.core.beans.converters.ProfileConverter;
-import com.creativedrive.cora.core.beans.enums.ProfileType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.softplan.unic.core.beans.converters.ProfileConverter;
+import com.softplan.unic.core.beans.enums.ProfileType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -12,7 +12,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Data
 @Builder
@@ -55,6 +54,4 @@ public class UserBean {
     @NotNull(message = "Can not be empty")
     @JsonDeserialize(using = ProfileConverter.class)
     private ProfileType perfil;
-
-    private List<MessageBean> message;
 }
