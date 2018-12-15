@@ -4,23 +4,39 @@
   <img src="https://travis-ci.com/Cafecanudo/softplan-UNIC.svg?branch=develop" alt="Build Status">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=ncloc">
-</a>
-<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=alert_status">
-</a>
-<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=code_smells">
-</a>
-<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=duplicated_lines_density">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=bugs">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=code_smells">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=coverage">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=ncloc">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=sqale_index">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=vulnerabilities">
 </a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=duplicated_lines_density">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=reliability_rating">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=security_rating">
+</a>
+<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=sqale_rating">
+</a>
+
 <h2>Avaliação</h2>
 <p>
     Nessa avaliação serão propostos dois exercícios relativamente simples de programação, onde
