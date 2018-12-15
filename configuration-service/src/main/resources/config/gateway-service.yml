@@ -20,9 +20,3 @@ spring:
                 - Path=/api/user/**
                 filters:
                 - RewritePath=/api/user/(?<path>.*), /api/user/$\{path}
-            -   id: message-service
-                uri: lb://message-service
-                predicates:
-                - Path=/api/message/**
-                filters:
-                - RewritePath=/api/message/(?<path>.*), /api/message/$\{path}
