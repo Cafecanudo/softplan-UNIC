@@ -1,5 +1,6 @@
 server:
-    port: 8060
+    port: 8062
+
 eureka:
     client:
         serviceUrl:
@@ -17,6 +18,6 @@ spring:
             -   id: user-service
                 uri: lb://user-service
                 predicates:
-                - Path=/api/user/**
+                - Path=/user/**
                 filters:
-                - RewritePath=/api/user/(?<path>.*), /api/user/$\{path}
+                - RewritePath=/user/(?<path>.*), /user/$\{path}

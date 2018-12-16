@@ -1,7 +1,7 @@
 server:
-    port: 8090
-    servlet:
-        context-path: /api
+    port: 9010
+#    servlet:
+#        context-path: /api
 eureka:
     client:
         serviceUrl:

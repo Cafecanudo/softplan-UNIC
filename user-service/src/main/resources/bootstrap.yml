@@ -1,0 +1,13 @@
+server:
+    port: 9091
+#    servlet:
+#        context-path: /api
+spring:
+    application:
+        name: user-service
+    data:
+        mongodb:
+            database: softplan-unic-sienge
+    cloud:
+        config:
+            uri: http://localhost:8060
