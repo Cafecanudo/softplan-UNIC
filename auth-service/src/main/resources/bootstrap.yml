@@ -1,0 +1,12 @@
+server:
+    port: 9999
+spring:
+    application:
+        name: auth-service
+#    cloud:
+#        config:
+#            uri: http://localhost:8060
+check-user-scopes: true
+logging:
+    level:
+        org.springframework.data.mongodb.core.MongoTemplate: DEBUG
