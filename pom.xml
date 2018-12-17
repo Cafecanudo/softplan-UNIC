@@ -11,6 +11,7 @@
         <module>softplan-unic-core</module>
         <module>configuration-service</module>
         <module>discovery-service</module>
+        <module>veiculo-service</module>
         <module>gateway-service</module>
     </modules>
 

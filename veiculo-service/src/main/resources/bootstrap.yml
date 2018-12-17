@@ -1,0 +1,16 @@
+server:
+    port: 9012
+spring:
+    application:
+        name: veiculo-service
+    cloud:
+        config:
+            uri: http://localhost:8060
+    data:
+        mongodb:
+            database: softplan-unic-sienge
+            host: localhost
+            port: 27017
+logging:
+    level:
+        org.springframework.data.mongodb.core.MongoTemplate: DEBUG

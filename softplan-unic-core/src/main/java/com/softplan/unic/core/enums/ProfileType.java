@@ -1,4 +1,4 @@
-package com.softplan.unic.core.beans.enums;
+package com.softplan.unic.core.enums;
 
 public enum ProfileType {
     ROLE_USER,

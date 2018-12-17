@@ -1,7 +1,5 @@
 server:
-    port: 8090
-    servlet:
-        context-path: /api
+    port: 9012
 eureka:
     client:
         serviceUrl:
@@ -9,6 +7,7 @@ eureka:
 spring:
     data:
         mongodb:
+            database: softplan-unic-sienge
             host: localhost
             port: 27017
 

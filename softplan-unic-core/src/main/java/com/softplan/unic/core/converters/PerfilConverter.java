@@ -1,6 +1,6 @@
-package com.softplan.unic.core.beans.converters;
+package com.softplan.unic.core.converters;
 
-import com.softplan.unic.core.beans.enums.ProfileType;
+import com.softplan.unic.core.enums.ProfileType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -9,7 +9,7 @@ import javax.validation.ValidationException;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class ProfileConverter extends JsonDeserializer<ProfileType> {
+public class PerfilConverter extends JsonDeserializer<ProfileType> {
 
     @Override
     public ProfileType deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {

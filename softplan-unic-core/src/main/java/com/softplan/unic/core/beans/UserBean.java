@@ -42,14 +42,6 @@ public class UserBean {
     @Size(min = 6, max = 15, message = "Min 6 and max 15 characters")
     private String senha;
 
-    @ApiModelProperty(notes = "Address of user")
-    @Size(max = 120, message = "Max 120 characters")
-    private String endereco;
-
-    @ApiModelProperty(notes = "Phone number of user", required = true)
-    @Size(max = 20, message = "Max 20 characters")
-    private String telefone;
-
     @ApiModelProperty(notes = "Profile of user", required = true)
     @NotNull(message = "Can not be empty")
     @JsonDeserialize(using = ProfileConverter.class)
