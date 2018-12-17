@@ -24,9 +24,9 @@ public class VeiculoControllerImpl implements VeiculoController {
     @Override
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<VeiculoBean> listarVeiculo() {
+    public List<VeiculoBean> listar() {
         log.info("Listando veiculos cadastrados...");
-        return veiculoService.listarVeiculo();
+        return veiculoService.listar();
     }
 
     @Override
@@ -40,8 +40,8 @@ public class VeiculoControllerImpl implements VeiculoController {
     @Override
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public VeiculoBean salvarVeiculo(@Valid @RequestBody VeiculoBean veiculo) {
+    public VeiculoBean salvar(@Valid @RequestBody VeiculoBean veiculo) {
         log.info("Salvando novo veiculo...");
-        return veiculoService.salvarVeiculo(veiculo);
+        return veiculoService.salvar(veiculo);
     }
 }

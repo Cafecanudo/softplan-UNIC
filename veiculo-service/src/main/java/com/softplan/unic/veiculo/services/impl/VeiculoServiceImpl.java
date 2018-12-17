@@ -19,25 +19,25 @@ import java.util.stream.Collectors;
 public class VeiculoServiceImpl implements VeiculoService {
 
     @Autowired
-    private VeiculoRepository veiculoRepository;
+    private VeiculoRepository repository;
 
     @Override
-    public List<VeiculoBean> listarVeiculo() {
-        List<VeiculoBean> list = veiculoRepository.findAll().stream().map(this::toBean).collect(Collectors.toList());
+    public List<VeiculoBean> listar() {
+        List<VeiculoBean> list = repository.findAll().stream().map(this::toBean).collect(Collectors.toList());
         return Optional.ofNullable(list).orElseThrow(() -> new NoResultExceptionApi());
     }
 
     @Override
     public VeiculoBean buscarPorID(String id) {
-        VeiculoDocument veiculo = veiculoRepository.findById(id).get();
-        return Optional.ofNullable(toBean(veiculo)).orElseThrow(() -> new NoResultExceptionApi());
+        VeiculoDocument veiculo = repository.findById(id).get();
+        return Optional.ofNullable(toBean(veiculo)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
     }
 
     @Override
-    public VeiculoBean salvarVeiculo(VeiculoBean veiculo) {
+    public VeiculoBean salvar(VeiculoBean veiculo) {
         VeiculoDocument document = toDocument(veiculo);
         document.setDataCadastro(LocalDate.now());
-        return toBean(veiculoRepository.save(document));
+        return toBean(repository.save(document));
     }
 
     /**
@@ -50,7 +50,7 @@ public class VeiculoServiceImpl implements VeiculoService {
         return VeiculoBean.builder()
                 .id(document.getId())
                 .nome(document.getNome())
-                .descricao(document.getDescricao())
+                .fatorMultiplicador(document.getFatorMultiplicador())
                 .dataCadastro(document.getDataCadastro())
                 .build();
     }
@@ -65,7 +65,7 @@ public class VeiculoServiceImpl implements VeiculoService {
         return VeiculoDocument.builder()
                 .id(bean.getId())
                 .nome(bean.getNome())
-                .descricao(bean.getDescricao())
+                .fatorMultiplicador(bean.getFatorMultiplicador())
                 .dataCadastro(bean.getDataCadastro())
                 .build();
     }

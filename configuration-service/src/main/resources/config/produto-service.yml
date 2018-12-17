@@ -1,0 +1,18 @@
+server:
+    port: 9013
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8061/eureka/
+spring:
+    data:
+        mongodb:
+            database: softplan-unic-sienge
+            host: localhost
+            port: 27017
+
+logging:
+    level:
+        org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"

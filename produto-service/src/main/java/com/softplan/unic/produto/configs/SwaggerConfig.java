@@ -1,4 +1,4 @@
-package com.softplan.unic.veiculo.configs;
+package com.softplan.unic.produto.configs;
 
 import com.softplan.unic.core.utils.SwaggerBuild;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +12,9 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-        return SwaggerBuild.build().title("Veículo API")
-                .description("API Servico para efetuar operacoes referente a veículo")
+        return SwaggerBuild.build().title("Produto API")
+                .description("API Servico para efetuar operacoes de produtos")
                 .version("0.0.1-SNAPSHOT")
                 .builder();
     }
-
 }

@@ -7,15 +7,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
 @Data
 @Builder
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("veiculo")
-public class VeiculoDocument {
+@Document("produto")
+public class ProdutoDocument {
 
     @Id
     private String id;
@@ -28,9 +27,6 @@ public class VeiculoDocument {
 
     @NotBlank
     @EqualsAndHashCode.Exclude
-    private float fatorMultiplicador;
-
-    @EqualsAndHashCode.Exclude
-    private LocalDate dataCadastro;
+    private float peso;
 
 }

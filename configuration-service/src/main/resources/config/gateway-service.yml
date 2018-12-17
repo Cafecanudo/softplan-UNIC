@@ -21,3 +21,9 @@ spring:
                 - Path=/veiculo/**
                 filters:
                 - RewritePath=/veiculo/(?<path>.*), /veiculo/$\{path}
+            -   id: produto-service
+                uri: lb://produto-service
+                predicates:
+                - Path=/produto/**
+                filters:
+                - RewritePath=/produto/(?<path>.*), /produto/$\{path}

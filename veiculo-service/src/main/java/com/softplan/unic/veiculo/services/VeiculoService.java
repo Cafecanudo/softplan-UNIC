@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface VeiculoService {
 
-    List<VeiculoBean> listarVeiculo();
+    List<VeiculoBean> listar();
 
     VeiculoBean buscarPorID(String id);
 
-    VeiculoBean salvarVeiculo(VeiculoBean veiculo);
+    VeiculoBean salvar(VeiculoBean veiculo);
 }

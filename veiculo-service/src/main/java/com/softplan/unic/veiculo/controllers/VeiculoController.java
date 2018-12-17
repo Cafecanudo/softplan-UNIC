@@ -5,7 +5,7 @@ import io.swagger.annotations.*;
 
 import java.util.List;
 
-@Api(value = "AAAA", description = "Servico veículo")
+@Api(description = "Servico veículo")
 @ApiResponses(
         value = {
                 @ApiResponse(code = 201, message = "Veículo criado"),
@@ -18,12 +18,12 @@ import java.util.List;
 public interface VeiculoController {
 
     @ApiOperation(value = "Lista veículos cadastrados", response = VeiculoBean.class)
-    List<VeiculoBean> listarVeiculo();
+    List<VeiculoBean> listar();
 
 
     @ApiOperation(value = "Buscar veículo por ID", response = VeiculoBean.class)
     VeiculoBean buscarPorID(@ApiParam(value = "ID do veículo", required = true) String id);
 
     @ApiOperation(value = "Salvar novo veículo", response = VeiculoBean.class)
-    VeiculoBean salvarVeiculo(VeiculoBean veiculo);
+    VeiculoBean salvar(VeiculoBean veiculo);
 }
