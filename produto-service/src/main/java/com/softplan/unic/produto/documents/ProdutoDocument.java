@@ -1,4 +1,4 @@
-package com.softplan.unic.core.documents;
+package com.softplan.unic.produto.documents;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
@@ -14,8 +13,8 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("via")
-public class ViaDocument {
+@Document("produto")
+public class ProdutoDocument {
 
     @Id
     private String id;
@@ -23,11 +22,16 @@ public class ViaDocument {
     @NotBlank
     @Size(max = 20)
     @Indexed(unique = true)
-    @EqualsAndHashCode.Exclude
     private String nome;
 
-    @NotNull
+    @Size(max = 1000)
     @EqualsAndHashCode.Exclude
-    private float valor;
+    private String image;
+
+    @NotBlank
+    private Double peso;
+
+    @NotBlank
+    private Double valor;
 
 }

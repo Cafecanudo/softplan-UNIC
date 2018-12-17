@@ -33,3 +33,9 @@ spring:
                 - Path=/transporte/**
                 filters:
                 - RewritePath=/transporte/(?<path>.*), /transporte/$\{path}
+            -   id: transporte-service
+                uri: lb://transporte-service
+                predicates:
+                - Path=/via/**
+                filters:
+                - RewritePath=/via/(?<path>.*), /via/$\{path}

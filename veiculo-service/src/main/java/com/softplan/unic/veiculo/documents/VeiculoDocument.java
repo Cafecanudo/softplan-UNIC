@@ -1,4 +1,4 @@
-package com.softplan.unic.core.documents;
+package com.softplan.unic.veiculo.documents;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -24,12 +24,10 @@ public class VeiculoDocument {
     @NotBlank
     @Size(max = 20)
     @Indexed(unique = true)
-    @EqualsAndHashCode.Exclude
     private String nome;
 
     @NotNull
-    @EqualsAndHashCode.Exclude
-    private float fatorMultiplicador;
+    private Double fatorMultiplicador;
 
     @EqualsAndHashCode.Exclude
     private LocalDate dataCadastro;

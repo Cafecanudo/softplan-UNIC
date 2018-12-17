@@ -1,8 +1,8 @@
 package com.softplan.unic.veiculo.services.impl;
 
 import com.softplan.unic.core.beans.VeiculoBean;
-import com.softplan.unic.core.documents.VeiculoDocument;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
+import com.softplan.unic.veiculo.documents.VeiculoDocument;
 import com.softplan.unic.veiculo.repositories.VeiculoRepository;
 import com.softplan.unic.veiculo.services.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class VeiculoServiceImpl implements VeiculoService {
 
     @Override
     public VeiculoBean buscarPorID(String id) {
-        VeiculoDocument veiculo = repository.findById(id).get();
-        return Optional.ofNullable(toBean(veiculo)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        VeiculoDocument veiculo = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado VEÍCULO com %s", id));
+        return toBean(veiculo);
     }
 
     @Override

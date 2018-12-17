@@ -26,12 +26,10 @@ public class ViaBean {
     @NotBlank
     @Size(max = 20, message = "Max 20 characters")
     @Indexed(unique = true)
-    @EqualsAndHashCode.Exclude
     private String nome;
 
     @ApiModelProperty(notes = "Valor por KM da VIA")
     @NotNull
-    @EqualsAndHashCode.Exclude
-    private float valor;
+    private Double valor;
 
 }

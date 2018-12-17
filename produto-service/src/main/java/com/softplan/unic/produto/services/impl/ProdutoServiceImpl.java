@@ -1,8 +1,8 @@
 package com.softplan.unic.produto.services.impl;
 
 import com.softplan.unic.core.beans.ProdutoBean;
-import com.softplan.unic.core.documents.ProdutoDocument;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
+import com.softplan.unic.produto.documents.ProdutoDocument;
 import com.softplan.unic.produto.repositories.ProdutoRepository;
 import com.softplan.unic.produto.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoBean buscarPorID(String id) {
-        ProdutoDocument produto = repository.findById(id).get();
-        return Optional.ofNullable(toBean(produto)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        ProdutoDocument produto = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado PRODUTO com %s", id));
+        return toBean(produto);
     }
 
     @Override
@@ -49,7 +49,9 @@ public class ProdutoServiceImpl implements ProdutoService {
         return ProdutoBean.builder()
                 .id(document.getId())
                 .nome(document.getNome())
+                .image(document.getImage())
                 .peso(document.getPeso())
+                .valor(document.getValor())
                 .build();
     }
 
@@ -63,7 +65,9 @@ public class ProdutoServiceImpl implements ProdutoService {
         return ProdutoDocument.builder()
                 .id(bean.getId())
                 .nome(bean.getNome())
+                .image(bean.getImage())
                 .peso(bean.getPeso())
+                .valor(bean.getValor())
                 .build();
     }
 }
