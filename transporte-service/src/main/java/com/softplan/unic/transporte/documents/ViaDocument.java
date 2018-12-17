@@ -26,6 +26,6 @@ public class ViaDocument {
     private String nome;
 
     @NotNull
-    private double valor;
+    private Double valor;
 
 }

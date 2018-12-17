@@ -29,8 +29,8 @@ public class ViaServiceImpl implements ViaService {
 
     @Override
     public ViaBean buscarPorID(String id) {
-        ViaDocument regis = repository.findById(id).get();
-        return Optional.ofNullable(toBean(regis)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        ViaDocument regis = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado VIA com %s", id));
+        return toBean(regis);
     }
 
     @Override

@@ -21,11 +21,12 @@ public abstract class GlobalExceptionHandlerAPI {
                 .build();
     }
 
-    @ExceptionHandler(value = {NoResultExceptionApi.class})
+    @ExceptionHandler(value = {NoResultExceptionApi.class, NoResultExternalExceptionApi.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrorResponse noFoundException(NoResultExceptionApi except) {
-        return ApiErrorResponse.builder().code(HttpStatus.NOT_FOUND.ordinal()).status(HttpStatus.NOT_FOUND).message(
-                Optional.of(except.getMessage()).orElse(except.toString()))
+        return ApiErrorResponse.builder().code(HttpStatus.NOT_FOUND.ordinal()).status(HttpStatus.NOT_FOUND)
+                .message(Optional.of(except.getMessage()).orElse(except.toString()))
+                .externalService(except.externalService)
                 .cause(ExceptionUtils.getRootCauseMessage(except))
                 .build();
     }
@@ -34,8 +35,8 @@ public abstract class GlobalExceptionHandlerAPI {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse duplicateException(MongoWriteException except) {
         HttpStatus status = except.getError().getMessage().indexOf("duplicate") > -1 ? HttpStatus.CONFLICT : HttpStatus.BAD_REQUEST;
-        return ApiErrorResponse.builder().code(status.ordinal()).status(status).message(
-                Optional.of(except.getMessage()).orElse(except.toString()))
+        return ApiErrorResponse.builder().code(status.ordinal()).status(status)
+                .message(Optional.of(except.getMessage()).orElse(except.toString()))
                 .cause(ExceptionUtils.getRootCauseMessage(except))
                 .build();
     }

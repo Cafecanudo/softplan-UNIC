@@ -25,12 +25,13 @@ public class ProdutoDocument {
     private String nome;
 
     @Size(max = 1000)
+    @EqualsAndHashCode.Exclude
     private String image;
 
     @NotBlank
-    private double peso;
+    private Double peso;
 
     @NotBlank
-    private double valor;
+    private Double valor;
 
 }

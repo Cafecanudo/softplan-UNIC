@@ -5,10 +5,13 @@ import com.softplan.unic.core.clients.ProdutoClient;
 import com.softplan.unic.core.clients.VeiculoClient;
 import com.softplan.unic.core.exceptions.BadRequestExceptionApi;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
+import com.softplan.unic.core.exceptions.NoResultExternalExceptionApi;
+import com.softplan.unic.core.utils.NumberUtils;
 import com.softplan.unic.transporte.documents.CalculoTransporteDocument;
 import com.softplan.unic.transporte.repositories.CalculoTransporteRepository;
 import com.softplan.unic.transporte.services.CalcularTransporteService;
 import com.softplan.unic.transporte.services.ViaService;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,8 +44,8 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
 
     @Override
     public CalculoTransporteBean buscarPorID(String id) {
-        CalculoTransporteDocument regis = repository.findById(id).get();
-        return Optional.ofNullable(toBean(regis)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        CalculoTransporteDocument regis = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        return toBean(regis);
     }
 
     @Override
@@ -54,27 +57,59 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
     @Override
     public CalculoBean calcular(CalculoTransporteBean bean) {
         validarVeiculo(bean.getVeiculo());
-        validarListaProdutos(bean.getItens());
-        validarVias(bean.getVias());
+        validarListaProdutos(bean.getCarga());
+        validarVias(bean.getRotas());
+        return calcularCustoTransporte(bean.getVeiculo(), bean.getCarga(), bean.getRotas());
+    }
 
+    /**
+     * Calcular custo de
+     *
+     * @param veiculo
+     * @param carga
+     * @param rotas
+     * @return
+     */
+    @Override
+    public CalculoBean calcularCustoTransporte(VeiculoBean veiculo, List<ItemBean> carga, List<RotaBean> rotas) {
+        double custoRota = rotas.stream().mapToDouble(rota -> rota.getKilometros() * rota.getVia().getValor())
+                .sum() * veiculo.getFatorMultiplicador();
 
-        return CalculoBean.builder().build();
+        double peso = carga.stream().mapToDouble(item -> item.getQuantidade() * item.getProduto().getPeso()).sum();
+        double valorProdutos = carga.stream().mapToDouble(item -> item.getQuantidade() * item.getProduto().getValor()).sum();
+        double distanciaPercorrido = rotas.stream().mapToDouble(rota -> rota.getKilometros()).sum();
+
+        //Calculando excedente
+        custoRota += (((peso / 1000) - 5.0) * 0.02) * 100;
+        return CalculoBean.builder()
+                .valorTransporte(NumberUtils.arredondarParaCima(custoRota))
+                .pesoTransportado(NumberUtils.arredondarParaCima(peso))
+                .valorEmMercadoria(NumberUtils.arredondarParaCima(valorProdutos))
+                .distanciaPercorrido(NumberUtils.arredondarParaCima(distanciaPercorrido))
+                .build();
     }
 
     /**
      * Valida lista de viar da requisicao
      *
-     * @param vias
+     * @param rotas
      */
-    private void validarVias(List<ViaBean> vias) {
-        vias.stream().forEach(via -> {
-            ViaBean _via = Optional.ofNullable(viaService.buscarPorID(via.getId()))
-                    .orElseThrow(() -> new BadRequestExceptionApi("Via \"%s\" da lista não foi encontrado!", via.getNome()));
+    private void validarVias(List<RotaBean> rotas) {
+        try {
+            rotas.stream().forEach(rota -> {
+                ViaBean _via = Optional.ofNullable(viaService.buscarPorID(rota.getVia().getId()))
+                        .orElseThrow(() -> new BadRequestExceptionApi("Via \"%s\" da lista não foi encontrado!", rota.getVia().getNome()));
 
-            if (!_via.equals(via)) {
-                throw new BadRequestExceptionApi("Uma VIA da lista é inválida!");
+                if (!_via.equals(rota.getVia())) {
+                    throw new BadRequestExceptionApi("Uma VIA da lista é inválida!");
+                }
+            });
+        } catch (FeignException e) {
+            if (e.getMessage().indexOf("NOT_FOUND") > -1) {
+                throw NoResultExternalExceptionApi.extractJSON(e.getMessage().substring(e.getMessage().indexOf("{")));
             }
-        });
+            throw e;
+        }
     }
 
     /**
@@ -84,14 +119,21 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
      * @return
      */
     private void validarListaProdutos(List<ItemBean> listItens) {
-        listItens.stream().forEach(itemBean -> {
-            ProdutoBean produto = Optional.ofNullable(produtoClient.buscarPorID(itemBean.getProduto().getId()))
-                    .orElseThrow(() -> new BadRequestExceptionApi("Item \"%s\" da lista de produtos não foi encontrado!",
-                            itemBean.getProduto().getNome()));
-            if (!produto.equals(itemBean.getProduto())) {
-                throw new BadRequestExceptionApi("Produto da solicitação é inválido!");
+        try {
+            listItens.stream().forEach(itemBean -> {
+                ProdutoBean produto = Optional.ofNullable(produtoClient.buscarPorID(itemBean.getProduto().getId()))
+                        .orElseThrow(() -> new BadRequestExceptionApi("Item \"%s\" da lista de produtos não foi encontrado!",
+                                itemBean.getProduto().getNome()));
+                if (!produto.equals(itemBean.getProduto())) {
+                    throw new BadRequestExceptionApi("Produto '%s' da solicitação é inválido!", produto.getNome());
+                }
+            });
+        } catch (FeignException e) {
+            if (e.getMessage().indexOf("NOT_FOUND") > -1) {
+                throw NoResultExternalExceptionApi.extractJSON(e.getMessage().substring(e.getMessage().indexOf("{")));
             }
-        });
+            throw e;
+        }
     }
 
     /**
@@ -101,12 +143,19 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
      * @return
      */
     private void validarVeiculo(VeiculoBean veiculo) {
-        VeiculoBean _veiculo = Optional.ofNullable(veiculoClient.buscarPorID(veiculo.getId()))
-                .orElseThrow(() -> new BadRequestExceptionApi("Veículo \"%s\" não foi encontrado!",
-                        veiculo.getNome()));
+        try {
+            VeiculoBean _veiculo = Optional.ofNullable(veiculoClient.buscarPorID(veiculo.getId()))
+                    .orElseThrow(() -> new BadRequestExceptionApi("Veículo \"%s\" não foi encontrado!",
+                            veiculo.getNome()));
 
-        if (!veiculo.equals(_veiculo)) {
-            throw new BadRequestExceptionApi("Veículo da solicitação é inválido!");
+            if (!veiculo.equals(_veiculo)) {
+                throw new BadRequestExceptionApi("Veículo da solicitação é inválido!");
+            }
+        } catch (FeignException e) {
+            if (e.getMessage().indexOf("NOT_FOUND") > -1) {
+                throw NoResultExternalExceptionApi.extractJSON(e.getMessage().substring(e.getMessage().indexOf("{")));
+            }
+            throw e;
         }
     }
 

@@ -29,8 +29,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoBean buscarPorID(String id) {
-        ProdutoDocument produto = repository.findById(id).get();
-        return Optional.ofNullable(toBean(produto)).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
+        ProdutoDocument produto = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado PRODUTO com %s", id));
+        return toBean(produto);
     }
 
     @Override

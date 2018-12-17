@@ -30,6 +30,6 @@ public class ViaBean {
 
     @ApiModelProperty(notes = "Valor por KM da VIA")
     @NotNull
-    private double valor;
+    private Double valor;
 
 }

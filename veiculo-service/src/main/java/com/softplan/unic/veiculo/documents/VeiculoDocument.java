@@ -27,8 +27,9 @@ public class VeiculoDocument {
     private String nome;
 
     @NotNull
-    private double fatorMultiplicador;
+    private Double fatorMultiplicador;
 
+    @EqualsAndHashCode.Exclude
     private LocalDate dataCadastro;
 
 }

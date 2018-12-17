@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NoResultExceptionApi extends MongoException {
 
+    protected Boolean externalService;
+
     public NoResultExceptionApi() {
         super("Not found results.");
     }

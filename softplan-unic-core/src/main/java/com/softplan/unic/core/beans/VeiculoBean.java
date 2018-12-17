@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -33,13 +34,14 @@ public class VeiculoBean {
 
     @ApiModelProperty(notes = "Fator multiplicador de custo")
     @JsonProperty(value = "fator_multiplicador")
-    @NotBlank
-    private double fatorMultiplicador;
+    @NotNull
+    private Double fatorMultiplicador;
 
     @ApiModelProperty(notes = "Data de cadastro")
     @JsonProperty(value = "data_cadastro")
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
+    @EqualsAndHashCode.Exclude
     private LocalDate dataCadastro;
 
 }

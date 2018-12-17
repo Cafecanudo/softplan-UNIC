@@ -49,7 +49,7 @@ public class TransporteControllerImpl implements TransporteController {
     @Override
     @PostMapping(value = "/calcular", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public CalculoBean calcular(CalculoTransporteBean bean) {
+    public CalculoBean calcular(@Valid @RequestBody CalculoTransporteBean bean) {
         log.info("Efetuando calculo de transporte...");
         return calcularTransporteService.calcular(bean);
     }

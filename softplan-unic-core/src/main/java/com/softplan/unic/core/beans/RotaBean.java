@@ -5,19 +5,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 @Data
 @Builder
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "item")
-public class ItemBean {
+@ApiModel(value = "rota")
+public class RotaBean {
 
-    @ApiModelProperty(notes = "Produto")
-    private ProdutoBean produto;
+    @NotNull
+    @Valid
+    @ApiModelProperty(notes = "Via")
+    private ViaBean via;
 
-    @ApiModelProperty(notes = "Quantidade do produto")
-    private Double quantidade;
-
+    @NotNull
+    @ApiModelProperty(notes = "Quantidades de KL")
+    private Double kilometros;
 }

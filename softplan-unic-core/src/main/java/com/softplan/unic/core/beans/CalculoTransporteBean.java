@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -21,19 +22,22 @@ public class CalculoTransporteBean {
     private String id;
 
     @ApiModelProperty(notes = "Veiculo")
+    @Valid
     @NotNull
     @EqualsAndHashCode.Exclude
     private VeiculoBean veiculo;
 
-    @ApiModelProperty(notes = "vias")
+    @ApiModelProperty(notes = "Rotas")
     @NotNull
+    @Valid
     @EqualsAndHashCode.Exclude
-    private List<ViaBean> vias;
+    private List<RotaBean> rotas;
 
     @ApiModelProperty(notes = "Produtos que o veiculo irá transportar")
     @NotNull
+    @Valid
     @EqualsAndHashCode.Exclude
-    private List<ItemBean> itens;
+    private List<ItemBean> carga;
 
     @ApiModelProperty(notes = "calculo")
     private CalculoBean calculo;
