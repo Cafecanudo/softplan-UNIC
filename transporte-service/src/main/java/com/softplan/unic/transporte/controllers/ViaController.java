@@ -13,11 +13,12 @@ import java.util.List;
                 @ApiResponse(code = 400, message = "Parametros inválidos"),
                 @ApiResponse(code = 401, message = "Acesso não autorizado"),
                 @ApiResponse(code = 404, message = "Registro(s) não encontrado(s)"),
+                @ApiResponse(code = 409, message = "Registro duplicado"),
         }
 )
 public interface ViaController {
 
-    @ApiOperation(value = "Lista Registro cadastrados", response = ViaBean.class)
+    @ApiOperation(value = "Lista Registro cadastrados", response = ViaBean.class, responseContainer = "List")
     List<ViaBean> listar();
 
 

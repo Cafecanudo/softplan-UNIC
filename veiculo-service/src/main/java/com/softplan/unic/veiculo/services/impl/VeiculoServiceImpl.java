@@ -1,7 +1,7 @@
 package com.softplan.unic.veiculo.services.impl;
 
 import com.softplan.unic.core.beans.VeiculoBean;
-import com.softplan.unic.core.documents.VeiculoDocument;
+import com.softplan.unic.veiculo.documents.VeiculoDocument;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
 import com.softplan.unic.veiculo.repositories.VeiculoRepository;
 import com.softplan.unic.veiculo.services.VeiculoService;

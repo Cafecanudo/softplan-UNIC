@@ -29,20 +29,17 @@ public class VeiculoBean {
     @ApiModelProperty(notes = "Nome do veículo")
     @NotBlank
     @Size(max = 20, message = "Max 20 characters")
-    @EqualsAndHashCode.Exclude
     private String nome;
 
     @ApiModelProperty(notes = "Fator multiplicador de custo")
     @JsonProperty(value = "fator_multiplicador")
     @NotBlank
-    @EqualsAndHashCode.Exclude
-    private float fatorMultiplicador;
+    private double fatorMultiplicador;
 
     @ApiModelProperty(notes = "Data de cadastro")
     @JsonProperty(value = "data_cadastro")
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    @EqualsAndHashCode.Exclude
     private LocalDate dataCadastro;
 
 }

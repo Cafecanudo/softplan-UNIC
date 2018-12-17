@@ -1,7 +1,7 @@
 package com.softplan.unic.transporte.services.impl;
 
 import com.softplan.unic.core.beans.ViaBean;
-import com.softplan.unic.core.documents.ViaDocument;
+import com.softplan.unic.transporte.documents.ViaDocument;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
 import com.softplan.unic.transporte.repositories.ViaRepository;
 import com.softplan.unic.transporte.services.ViaService;

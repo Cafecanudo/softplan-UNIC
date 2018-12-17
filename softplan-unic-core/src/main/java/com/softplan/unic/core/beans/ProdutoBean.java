@@ -25,13 +25,20 @@ public class ProdutoBean {
     @ApiModelProperty(notes = "Nome do produto")
     @NotBlank
     @Size(max = 20, message = "Max 20 characters")
-    @EqualsAndHashCode.Exclude
     private String nome;
+
+    @ApiModelProperty(notes = "URL de imagem")
+    @Size(max = 1000, message = "Max 1000 characters")
+    private String image;
 
     @ApiModelProperty(notes = "Peso do produto")
     @JsonProperty(value = "peso")
     @NotNull
-    @EqualsAndHashCode.Exclude
-    private float peso;
+    private double peso;
+
+    @ApiModelProperty(notes = "Valor do produto")
+    @JsonProperty(value = "valor")
+    @NotNull
+    private double valor;
 
 }
