@@ -13,6 +13,7 @@
         <module>discovery-service</module>
         <module>veiculo-service</module>
         <module>produto-service</module>
+        <module>transporte-service</module>
         <module>gateway-service</module>
     </modules>
 
