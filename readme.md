@@ -1,5 +1,8 @@
 <h1 id="api-boleto-contaazul">API SIENGE MICRO-SERVICES</h1>
 
+<a href="https://gitter.im/softplan-unic/Lobby">
+  <img src="https://badges.gitter.im/Join%20Chat.svg">
+</a>
 <a href="https://travis-ci.com/Cafecanudo/softplan-UNIC">
   <img src="https://travis-ci.com/Cafecanudo/softplan-UNIC.svg?branch=develop" alt="Build Status">
 </a>

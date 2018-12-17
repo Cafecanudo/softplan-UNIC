@@ -1,0 +1,16 @@
+server:
+    port: 9013
+spring:
+    application:
+        name: produto-service
+    cloud:
+        config:
+            uri: http://localhost:8060
+    data:
+        mongodb:
+            database: softplan-unic-sienge
+            host: localhost
+            port: 27017
+logging:
+    level:
+        org.springframework.data.mongodb.core.MongoTemplate: DEBUG
