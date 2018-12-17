@@ -1,5 +1,5 @@
 server:
-    port: 8062
+    port: 9010
 
 eureka:
     client:
@@ -15,9 +15,9 @@ spring:
                 locator:
                     enabled: true
             routes:
-            -   id: user-service
-                uri: lb://user-service
+            -   id: veiculo-service
+                uri: lb://veiculo-service
                 predicates:
-                - Path=/user/**
+                - Path=/veiculo/**
                 filters:
-                - RewritePath=/user/(?<path>.*), /user/$\{path}
+                - RewritePath=/veiculo/(?<path>.*), /veiculo/$\{path}
