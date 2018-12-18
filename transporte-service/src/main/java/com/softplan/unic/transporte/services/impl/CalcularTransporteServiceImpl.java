@@ -3,11 +3,12 @@ package com.softplan.unic.transporte.services.impl;
 import com.softplan.unic.core.beans.*;
 import com.softplan.unic.core.clients.ProdutoClient;
 import com.softplan.unic.core.clients.VeiculoClient;
+import com.softplan.unic.core.converters.ConvertUtils;
+import com.softplan.unic.core.documents.CalculoTransporteDocument;
 import com.softplan.unic.core.exceptions.BadRequestExceptionApi;
 import com.softplan.unic.core.exceptions.NoResultExceptionApi;
 import com.softplan.unic.core.exceptions.NoResultExternalExceptionApi;
 import com.softplan.unic.core.utils.NumberUtils;
-import com.softplan.unic.transporte.documents.CalculoTransporteDocument;
 import com.softplan.unic.transporte.repositories.CalculoTransporteRepository;
 import com.softplan.unic.transporte.services.CalcularTransporteService;
 import com.softplan.unic.transporte.services.ViaService;
@@ -38,20 +39,21 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
 
     @Override
     public List<CalculoTransporteBean> listar() {
-        List<CalculoTransporteBean> list = repository.findAll().stream().map(this::toBean).collect(Collectors.toList());
+        List<CalculoTransporteBean> list = repository.findAll().stream().map(ConvertUtils.Transporte::to).collect(Collectors.toList());
         return Optional.ofNullable(list).orElseThrow(() -> new NoResultExceptionApi());
     }
 
     @Override
     public CalculoTransporteBean buscarPorID(String id) {
         CalculoTransporteDocument regis = repository.findById(id).orElseThrow(() -> new NoResultExceptionApi("Não foi encontrado registro com %s", id));
-        return toBean(regis);
+        return ConvertUtils.Transporte.to(regis);
     }
 
     @Override
     public CalculoTransporteBean salvar(CalculoTransporteBean bean) {
-        CalculoTransporteDocument document = toDocument(bean);
-        return toBean(repository.save(document));
+        bean.setCalculo(calcular(bean));
+        CalculoTransporteDocument document = ConvertUtils.Transporte.to(bean);
+        return ConvertUtils.Transporte.to(repository.save(document));
     }
 
     @Override
@@ -157,30 +159,6 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
             }
             throw e;
         }
-    }
-
-    /**
-     * Converter Documento para Bean
-     *
-     * @param document
-     * @return
-     */
-    private CalculoTransporteBean toBean(CalculoTransporteDocument document) {
-        return CalculoTransporteBean.builder()
-                .id(document.getId())
-                .build();
-    }
-
-    /**
-     * Converte Bean para Documento
-     *
-     * @param bean
-     * @return
-     */
-    private CalculoTransporteDocument toDocument(CalculoTransporteBean bean) {
-        return CalculoTransporteDocument.builder()
-                .id(bean.getId())
-                .build();
     }
 
 }

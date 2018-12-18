@@ -1,4 +1,4 @@
-package com.softplan.unic.produto.documents;
+package com.softplan.unic.core.documents;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -20,7 +20,7 @@ public class ProdutoDocument {
     private String id;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(max = 200)
     @Indexed(unique = true)
     private String nome;
 

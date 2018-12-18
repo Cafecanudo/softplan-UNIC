@@ -1,6 +1,6 @@
 package com.softplan.unic.veiculo.repositories;
 
-import com.softplan.unic.veiculo.documents.VeiculoDocument;
+import com.softplan.unic.core.documents.VeiculoDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

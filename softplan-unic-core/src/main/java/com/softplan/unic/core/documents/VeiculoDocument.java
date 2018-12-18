@@ -1,4 +1,4 @@
-package com.softplan.unic.veiculo.documents;
+package com.softplan.unic.core.documents;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

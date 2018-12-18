@@ -1,6 +1,6 @@
 package com.softplan.unic.produto.repositories;
 
-import com.softplan.unic.produto.documents.ProdutoDocument;
+import com.softplan.unic.core.documents.ProdutoDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

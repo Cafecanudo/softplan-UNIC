@@ -1,6 +1,6 @@
 package com.softplan.unic.veiculo;
 
-import com.softplan.unic.veiculo.documents.VeiculoDocument;
+import com.softplan.unic.core.documents.VeiculoDocument;
 import com.softplan.unic.veiculo.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
 package com.softplan.unic.transporte.repositories;
 
-import com.softplan.unic.transporte.documents.CalculoTransporteDocument;
+import com.softplan.unic.core.documents.CalculoTransporteDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
