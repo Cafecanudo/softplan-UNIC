@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatTableDataSource} from "@angular/material";
+import {ApiService} from "../api.service";
 
 export interface DadosInput {
     input?: any;
     select?: Via[] | Produto[];
     tabela: {
         colunms: string[];
-        data: MatTableDataSource;
+        data: any;
     };
 }
 
@@ -59,24 +60,21 @@ export interface Calculo {
     selector: 'mns-caluclar-transporte',
     templateUrl: './caluclar-transporte.component.html',
 })
-export class CaluclarTransporteComponent implements OnInit {
+export class CaluclarTransporteComponent implements OnInit, AfterContentInit {
+
+    constructor(public apiService: ApiService) {
+    }
 
     enviarInformacoes: boolean = false;
 
-    veiculosDiponiveis: Veiculo[] = [
-        {id: 'steak-0', nome: 'Caminhão Caçamba', fatorMultiplicador: 1.0},
-        {id: 'tacos-2', nome: 'Carreta', fatorMultiplicador: 1.0}
-    ];
+    veiculosDiponiveis: Veiculo[] = [];
 
     dadosVia: DadosInput = {
         input: {
             viaSelecionada: new FormControl(null, {validators: Validators.required}),
             quantidade: new FormControl(null, {validators: Validators.required}),
         },
-        select: [
-            {id: '', nome: 'Pavimenta', valor: 33.33},
-            {id: '', nome: 'Maritima', valor: 33.33}
-        ],
+        select: [],
         tabela: {
             colunms: ['nome', 'valor', 'quilometros', 'total'],
             data: new MatTableDataSource([])
@@ -170,7 +168,25 @@ export class CaluclarTransporteComponent implements OnInit {
         this.enviarInformacoes = true;
     }
 
+    loadVeiculo() {
+        this.apiService.getVeiculos().subscribe((veiculos) => {
+            this.veiculosDiponiveis = veiculos;
+        });
+    }
+
+    loadVias() {
+        this.apiService.getVias().subscribe((vias) => {
+            this.dadosVia.tabela.data.data = [...vias];
+        });
+    }
+
     ngOnInit(): void {
+
+    }
+
+    ngAfterContentInit(){
+        this.loadVeiculo();
+        this.loadVias();
     }
 
 }
