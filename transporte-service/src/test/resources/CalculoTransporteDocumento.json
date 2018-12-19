@@ -12,7 +12,7 @@
         "nome": "Pavimentada",
         "valor": 0.54
       },
-      "kilometros": 154.32
+      "quilometros": 154.32
     },
     {
       "via": {
@@ -20,7 +20,7 @@
         "nome": "Não-pavimentada",
         "valor": 0.62
       },
-      "kilometros": 125.55
+      "quilometros": 125.55
     }
   ],
   "carga": [

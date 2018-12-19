@@ -31,7 +31,7 @@ public class CalcularTransporteServiceImplTest {
     @Test
     @DisplayName("Calcular: Menor de 5 Toneladas")
     public void calculoDeTransporte() {
-        rotas.add(RotaBean.builder().kilometros(100.0).via(ViaBean.builder().nome("Pavimentada").valor(0.54).build()).build());
+        rotas.add(RotaBean.builder().quilometros(100.0).via(ViaBean.builder().nome("Pavimentada").valor(0.54).build()).build());
 
         cargas.add(ItemBean.builder().quantidade(2500.0).produto(ProdutoBean.builder().nome("Produto 1").peso(1.0).valor(2.45).build()).build());
         cargas.add(ItemBean.builder().quantidade(2500.0).produto(ProdutoBean.builder().nome("Produto 2").peso(1.0).valor(1.21).build()).build());
@@ -46,7 +46,7 @@ public class CalcularTransporteServiceImplTest {
     @Test
     @DisplayName("Calcular: Mais de 5 Toneladas")
     public void calculoDeTransporteError() {
-        rotas.add(RotaBean.builder().kilometros(100.0).via(ViaBean.builder().nome("Pavimentada").valor(0.54).build()).build());
+        rotas.add(RotaBean.builder().quilometros(100.0).via(ViaBean.builder().nome("Pavimentada").valor(0.54).build()).build());
 
         cargas.clear();
         cargas.add(ItemBean.builder().quantidade(4000.0).produto(ProdutoBean.builder().nome("Produto 1").peso(1.0).valor(2.45).build()).build());
