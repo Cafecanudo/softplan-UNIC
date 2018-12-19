@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -13,10 +13,16 @@ import {
     MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
+    MatInputModule, MatProgressBarModule,
     MatSelectModule, MatTableModule
 } from "@angular/material";
 import {ReactiveFormsModule} from "@angular/forms";
+import {registerLocaleData} from "@angular/common";
+
+import localePt from '@angular/common/locales/pt';
+import {HttpClientModule} from "@angular/common/http";
+
+registerLocaleData(localePt);
 
 @NgModule({
     declarations: [
@@ -26,6 +32,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
@@ -38,6 +45,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatCardModule,
         MatIconModule,
         MatTableModule,
+        MatProgressBarModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -49,9 +57,12 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatSelectModule,
         MatCardModule,
         MatIconModule,
-        MatTableModule
+        MatTableModule,
+        MatProgressBarModule
     ],
-    providers: [],
+    providers: [
+        {provide: LOCALE_ID, useValue: 'pt-BR'}
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {
