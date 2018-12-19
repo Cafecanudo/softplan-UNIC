@@ -1,0 +1,134 @@
+<div class="form-content shadow-lg p-3 mb-5 bg-white rounded">
+    <form [formGroup]="calculoGroup">
+        <mat-form-field style="width: 100%">
+            <mat-select placeholder="Ve&iacute;culo" formControlName="veiculo">
+                <mat-option *ngFor="let veic of veiculosSelect" [value]="veic.id">
+                    {{veic.descricao}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-row">
+            <mat-form-field class="col">
+                <mat-select placeholder="Adicionar Vias">
+                    <mat-option *ngFor="let veic of viaSelect" [value]="veic.id">
+                        {{veic.descricao}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-sm-3">
+                <input matInput placeholder="Quil&ocirc;metro">
+            </mat-form-field>
+            <div class="col-sm col-md-2">
+                <button mat-raised-button color="primary" style="height: 45px; width: 100%; margin-left: 0;">
+                    <i class="material-icons">done</i>
+                </button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <table mat-table [dataSource]="dataSourceVia" class="mat-elevation-z1" style="width: 100%">
+                    <ng-container matColumnDef="descricao">
+                        <th mat-header-cell *matHeaderCellDef> Descri&ccedil;&atilde;o</th>
+                        <td mat-cell *matCellDef="let element"> {{element.descricao}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quilometro">
+                        <th mat-header-cell *matHeaderCellDef> Quil&ocirc;metro</th>
+                        <td mat-cell *matCellDef="let element"> {{element.quilometro}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsVias"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsVias;"></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-row" style="padding-top: 25px">
+            <mat-form-field class="col">
+                <mat-select placeholder="Adicionar Produtos">
+                    <mat-option *ngFor="let veic of produtoSelect" [value]="veic.id">
+                        {{veic.descricao}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-2">
+                <input matInput placeholder="Peso" readonly value="0.0" disabled>
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <input matInput placeholder="Quantidade" value="0.0">
+            </mat-form-field>
+            <mat-form-field class="col-md">
+                <input matInput placeholder="Total Peso" readonly value="0.0" disabled>
+            </mat-form-field>
+            <div class="col-sm col-md-2">
+                <button mat-raised-button color="primary" style="height: 45px; width: 100%; margin-left: 0;">
+                    <i class="material-icons">done</i>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <table mat-table [dataSource]="dataSourceProduto" class="mat-elevation-z1" style="width: 100%">
+                    <ng-container matColumnDef="descricao">
+                        <th mat-header-cell *matHeaderCellDef> Descri&ccedil;&atilde;o</th>
+                        <td mat-cell *matCellDef="let element"> {{element.descricao}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="peso">
+                        <th mat-header-cell *matHeaderCellDef> Peso</th>
+                        <td mat-cell *matCellDef="let element"> {{element.peso}} kg</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quantidade">
+                        <th mat-header-cell *matHeaderCellDef> Quantidade</th>
+                        <td mat-cell *matCellDef="let element"> {{element.quantidade}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsProduto"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsProduto;"></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-top: 30px;">
+            <div class="col">
+                <label>Resultado do Calculo</label>
+                <table mat-table [dataSource]="calculoEfetuado" class="mat-elevation-z1" style="width: 100%">
+                    <ng-container matColumnDef="valorTransporte">
+                        <th mat-header-cell *matHeaderCellDef> Valor Transporte</th>
+                        <td mat-cell *matCellDef="let element"> {{element.valorTransporte}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quilometro">
+                        <th mat-header-cell *matHeaderCellDef> Quil&ocirc;metro</th>
+                        <td mat-cell *matCellDef="let element"> {{element.quilometro}} km</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="valorMercadoria">
+                        <th mat-header-cell *matHeaderCellDef> Valor Carga</th>
+                        <td mat-cell *matCellDef="let element"> {{element.valorMercadoria}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="pesoTotal">
+                        <th mat-header-cell *matHeaderCellDef> Peso Total</th>
+                        <td mat-cell *matCellDef="let element"> {{element.pesoTotal}} kg</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnsCalculo"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnsCalculo;"></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px; text-align: right;">
+            <button mat-flat-button color="primary">
+                <i class="material-icons">settings_backup_restore</i> Calcular
+            </button>
+            <button mat-flat-button color="primary" disabled>
+                <i class="material-icons">done_all</i> Salvar
+            </button>
+        </div>
+    </form>
+</div>
