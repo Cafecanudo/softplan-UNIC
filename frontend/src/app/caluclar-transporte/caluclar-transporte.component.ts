@@ -1,22 +1,52 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatTableDataSource} from "@angular/material";
+
+export interface DadosInput {
+    input?: any;
+    select?: Via[] | Produto[];
+    tabela: {
+        colunms: string[];
+        data: MatTableDataSource;
+    };
+}
 
 export interface Veiculo {
     id: string;
-    descricao: string;
-}
-
-export interface produto {
-    id: string;
-    descricao: string;
-    peso: Number;
+    nome: string;
+    fatorMultiplicador: number;
 }
 
 export interface Via {
     id: string;
-    descricao: string;
-    quilometro?: number;
+    nome: string;
+    valor: number;
 }
+
+export interface Rota {
+    via: Via;
+    quilometros: number;
+}
+
+export interface Produto {
+    id: string;
+    nome: string;
+    image?: string;
+    peso: number;
+    valor: number;
+}
+
+export interface Carga {
+    produto: Produto;
+    quantidade: number;
+}
+
+// export interface CalculoRequest {
+//     veiculo: Veiculo;
+//     rotas: Rota[];
+//     carga: Carga[];
+//     calculo: Calculo;
+// }
 
 export interface Calculo {
     valorTransporte: number;
@@ -31,49 +61,116 @@ export interface Calculo {
 })
 export class CaluclarTransporteComponent implements OnInit {
 
+    enviarInformacoes: boolean = false;
+
+    veiculosDiponiveis: Veiculo[] = [
+        {id: 'steak-0', nome: 'Caminhão Caçamba', fatorMultiplicador: 1.0},
+        {id: 'tacos-2', nome: 'Carreta', fatorMultiplicador: 1.0}
+    ];
+
+    dadosVia: DadosInput = {
+        input: {
+            viaSelecionada: new FormControl(null, {validators: Validators.required}),
+            quantidade: new FormControl(null, {validators: Validators.required}),
+        },
+        select: [
+            {id: '', nome: 'Pavimenta', valor: 33.33},
+            {id: '', nome: 'Maritima', valor: 33.33}
+        ],
+        tabela: {
+            colunms: ['nome', 'valor', 'quilometros', 'total'],
+            data: new MatTableDataSource([])
+        }
+    };
+
+    calcularTodaTransporte() {
+        var valorTotal: number = 0;
+        this.dadosVia.tabela.data.data.forEach((rota: Rota) => {
+            valorTotal += rota.quilometros * rota.via.valor;
+        });
+        return valorTotal;
+    }
+
+    addVia() {
+        var rota: Rota = {
+            via: this.dadosVia.input.viaSelecionada.value,
+            quilometros: Number(this.dadosVia.input.quantidade.value)
+        };
+        this.dadosVia.input.viaSelecionada.reset();
+        this.dadosVia.input.quantidade.reset();
+        this.dadosVia.tabela.data.data = [...this.dadosVia.tabela.data.data, rota];
+    }
+
+    dadosProdutos: DadosInput = {
+        input: {
+            produtoSelecionada: new FormControl(null, {validators: Validators.required}),
+            quantidade: new FormControl(null, {validators: Validators.required}),
+        },
+        select: [
+            {id: 'steak-0', nome: 'Bloco Cerâmico Vedação 11,5x14x24cm Jad', peso: 1.2, valor: 10},
+            {id: 'tacos-2', nome: 'Telha de PVC Cumeeira Central Colonial 56x90cm Axton', peso: 2.0, valor: 45.5}
+        ],
+        tabela: {
+            colunms: ['nome', 'peso', 'valor', 'quantidade', 'total'],
+            data: new MatTableDataSource([])
+        }
+    };
+
+    addProduto() {
+        var carga: Carga = {
+            produto: this.dadosProdutos.input.produtoSelecionada.value,
+            quantidade: this.dadosProdutos.input.quantidade.value,
+        };
+        this.dadosProdutos.input.produtoSelecionada.reset();
+        this.dadosProdutos.input.quantidade.reset();
+        this.dadosProdutos.tabela.data.data = [...this.dadosProdutos.tabela.data.data, carga];
+    }
+
+    calcularTodaMercadotia() {
+        var valorTotal: number = 0;
+        this.dadosProdutos.tabela.data.data.forEach((carga: Carga) => {
+            valorTotal += carga.quantidade * carga.produto.valor
+        });
+        return valorTotal;
+    }
+
+    calcularPesoTotal() {
+        var pesoTotal: number = 0;
+        this.dadosProdutos.tabela.data.data.forEach((carga: Carga) => {
+            pesoTotal += carga.quantidade * carga.produto.peso
+        });
+        return pesoTotal;
+    }
+
+    dadosCalculo: DadosInput = {
+        tabela: {
+            colunms: ['valorTransporte', 'valorMercadoria', 'quilometro', 'pesoTotal'],
+            data: new MatTableDataSource([])
+        }
+    };
+
     calculoGroup = new FormGroup({
-        veiculo: new FormControl(''),
+        veiculo: new FormControl(null, {
+            validators: Validators.required
+        }),
+        rotas: new FormControl(null, {
+            validators: Validators.required
+        }),
+        cargas: new FormControl(null, {
+            validators: Validators.required
+        }),
+        calculo: new FormControl(null, {
+            validators: Validators.required
+        })
     });
 
-    veiculosSelect: Veiculo[] = [
-        {id: 'steak-0', descricao: 'Carro1'},
-        {id: 'tacos-2', descricao: 'Carro2'}
-    ];
-
-    viaSelect: Via[] = [
-        {id: 'steak-0', descricao: 'Pavimentada'},
-        {id: 'tacos-2', descricao: 'Maritima'}
-    ];
-
-    viasAdicionadas: Via[] = [
-        {id: "YXdkYXdkYXc", descricao: 'Pavimentada', quilometro: 152.2},
-    ];
-
-    columnsVias: string[] = ['descricao', 'quilometro'];
-    dataSourceVia = this.viasAdicionadas;
-
-    /*-------------------------------------------------------------------------------------------*/
-    produtoSelect: produto[] = [
-        {id: 'steak-0', descricao: 'Bloco Cerâmico Vedação 11,5x14x24cm Jad', peso: 1.2},
-        {id: 'tacos-2', descricao: 'Telha de PVC Cumeeira Central Colonial 56x90cm Axton', peso: 2.0}
-    ];
-
-    produtoAdicionados: produto[] = [
-        {id: 'steak-0', descricao: 'Bloco Cerâmico Vedação 11,5x14x24cm Jad', peso: 1.2},
-        {id: 'tacos-2', descricao: 'Telha de PVC Cumeeira Central Colonial 56x90cm Axton', peso: 2.0}
-    ];
-
-    columnsProduto: string[] = ['descricao', 'peso', 'quantidade'];
-    dataSourceProduto = this.produtoAdicionados;
-    /*-------------------------------------------------------------------------------------------*/
-
-    columnsCalculo: string[] = ['valorTransporte', 'valorMercadoria', 'quilometro', 'pesoTotal'];
-    calculoEfetuado: Calculo[] = [
-        {valorTransporte: 4521.01, valorMercadoria: 145.25, quilometro: 125, pesoTotal: 8000},
-    ];
+    calcularCustoTransporte() {
+        // this.calculoGroup.controls.rotas.setValue(this.dadosVia.tabela.data.data);
+        // this.calculoGroup.controls.cargas.setValue(this.dadosProdutos.tabela.data.data);
+        this.enviarInformacoes = true;
+    }
 
     ngOnInit(): void {
-
     }
 
 }

@@ -85,14 +85,14 @@ public class ConvertUtils {
 
         public static RotaBean to(RotaDocument document) {
             return RotaBean.builder()
-                    .kilometros(document.getKilometros())
+                    .quilometros(document.getQuilometros())
                     .via(Transporte.to(document.getVia()))
                     .build();
         }
 
         public static RotaDocument to(RotaBean bean) {
             return RotaDocument.builder()
-                    .kilometros(bean.getKilometros())
+                    .quilometros(bean.getQuilometros())
                     .via(Transporte.to(bean.getVia()))
                     .build();
         }

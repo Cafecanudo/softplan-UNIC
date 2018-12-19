@@ -15,5 +15,5 @@ public class RotaDocument {
     private ViaDocument via;
 
     @NotNull
-    private Double kilometros;
+    private Double quilometros;
 }
