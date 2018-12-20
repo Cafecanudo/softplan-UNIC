@@ -9,6 +9,14 @@ Nessa avaliação serão propostos dois exercícios relativamente simples de pro
 Acreditamos que uma eficaz cobertura de testes automatizados é imprescindível para garantirmos a qualidade e produtividade na manutenção e evolução do software. Por isso, também iremos avaliar os testes.  
   
 Pedimos que realize os exercícios na linguagem Java, podendo utilizar qualquer biblioteca e framework que desejar, inclusive na parte dos testes. Inclua um arquivo chamado readme.txt com instruções de como realizar o deploy e a execução do seu aplicativo.
+
+####Desktop
+![enter image description here](frontend/src/images/front-descktop.png)
+
+####Mobile
+![enter image description here](frontend/src/images/front-mobile-1.png)
+![enter image description here](frontend/src/images/front-mobile-2.png)
+
 ## Observação
 Dado ao tempo no desenvolvimento do projeto os testes foram demostrados somente no microserviço [transporte-service](https://github.com/Cafecanudo/softplan-UNIC/tree/master/transporte-service).
 Testes foram implementado usando **JUnit-5** e **Powermock**.
