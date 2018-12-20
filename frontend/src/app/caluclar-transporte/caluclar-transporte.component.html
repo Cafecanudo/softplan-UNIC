@@ -1,12 +1,18 @@
 <div class="form-content shadow-lg p-3 mb-5 bg-white rounded">
     <form [formGroup]="calculoGroup">
-        <mat-form-field style="width: 100%">
-            <mat-select placeholder="Ve&iacute;culo" formControlName="veiculo">
-                <mat-option *ngFor="let veic of veiculosDiponiveis" [value]="veic">
-                    {{veic.nome}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="form-row">
+            <mat-form-field style="width: 100%" class="col">
+                <mat-select placeholder="Ve&iacute;culo" formControlName="veiculo">
+                    <mat-option *ngFor="let veic of veiculosDiponiveis" [value]="veic">
+                        {{veic.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-2">
+                <input matInput placeholder="Fator" disabled
+                       value="{{calculoGroup.controls['veiculo'].value?.fator_multiplicador}}">
+            </mat-form-field>
+        </div>
 
         <div class="form-row">
             <mat-form-field class="col">
@@ -16,8 +22,12 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="col-sm-3">
-                <input matInput placeholder="Quil&ocirc;metro" [disabled]="!dadosVia.input.viaSelecionada.valid"
+            <mat-form-field class="col-sm-2">
+                <input matInput placeholder="Valor" disabled
+                       value="{{dadosVia.input.viaSelecionada.value?.valor | currency:'BRL':true}}">
+            </mat-form-field>
+            <mat-form-field class="col-sm-2">
+                <input matInput placeholder="Quil&ocirc;metro" [disabled]="dadosVia.input.viaSelecionada.invalid"
                        [formControl]="dadosVia.input.quantidade">
             </mat-form-field>
             <div class="col-sm col-md-2">
@@ -25,7 +35,7 @@
                         style="height: 45px; width: 100%; margin-left: 0;"
                         [disabled]="(enviarInformacoes || !dadosVia.input.viaSelecionada.valid || !dadosVia.input.quantidade.valid)"
                         (click)="addVia()">
-                    <i class="material-icons">done</i>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -48,7 +58,7 @@
 
                     <ng-container matColumnDef="quilometros">
                         <th mat-header-cell *matHeaderCellDef> Quil&ocirc;metro</th>
-                        <td mat-cell *matCellDef="let element"> {{element.quilometros}}</td>
+                        <td mat-cell *matCellDef="let element"> {{element.quilometros}} km</td>
                         <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
                     </ng-container>
 
@@ -79,22 +89,28 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="col-2">
-                <input matInput placeholder="Peso" readonly
-                       value="{{dadosProdutos.input.produtoSelecionada.value?.peso}} kg" disabled>
-            </mat-form-field>
-            <mat-form-field class="col-2">
-                <input matInput placeholder="Valor" readonly disabled
-                       value="{{dadosProdutos.input.produtoSelecionada.value?.valor | currency:'BRL':true}}">
-            </mat-form-field>
-            <mat-form-field class="col-md-2">
-                <input matInput placeholder="Quantidade" value="0.0" [formControl]="dadosProdutos.input.quantidade">
-            </mat-form-field>
+            <div class="col-md-6">
+                <div class="row">
+                    <mat-form-field class="col-4" style="padding-right: 0;">
+                        <input matInput placeholder="Peso" readonly
+                               value="{{dadosProdutos.input.produtoSelecionada.value?.peso}} kg" disabled>
+                    </mat-form-field>
+                    <mat-form-field class="col-4" style="padding-right: 0; padding-left: 10px;">
+                        <input matInput placeholder="Valor" readonly disabled
+                               value="{{dadosProdutos.input.produtoSelecionada.value?.valor | currency:'BRL':true}}">
+                    </mat-form-field>
+                    <mat-form-field class="col-4" style="padding-left: 10px;">
+                        <input matInput placeholder="Quantidade"
+                               [formControl]="dadosProdutos.input.quantidade">
+                    </mat-form-field>
+                </div>
+            </div>
+
             <div class="col-sm col-md-2">
                 <button mat-raised-button color="primary" style="height: 45px; width: 100%; margin-left: 0;"
                         [disabled]="(enviarInformacoes || !dadosProdutos.input.produtoSelecionada.valid || !dadosProdutos.input.quantidade.valid || dadosProdutos.input.quantidade.value <= 0)"
                         (click)="addProduto()">
-                    <i class="material-icons">done</i>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -105,7 +121,7 @@
                     <ng-container matColumnDef="nome">
                         <th mat-header-cell *matHeaderCellDef> Nome</th>
                         <td mat-cell *matCellDef="let element"> {{element.produto.nome}}</td>
-                        <td mat-footer-cell *matFooterCellDef> <b>Total</b></td>
+                        <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
                     </ng-container>
 
                     <ng-container matColumnDef="peso">
@@ -149,25 +165,25 @@
         <div class="form-row" style="margin-top: 30px;" [hidden]="!dadosCalculo.tabela.data.data.length > 0">
             <div class="col">
                 <label>Resultado do Calculo</label>
-                <table mat-table [dataSource]="dadosCalculo.tabela.dat" class="mat-elevation-z1" style="width: 100%">
+                <table mat-table [dataSource]="dadosCalculo.tabela.data" class="mat-elevation-z1" style="width: 100%">
                     <ng-container matColumnDef="valorTransporte">
                         <th mat-header-cell *matHeaderCellDef> Valor Transporte</th>
-                        <td mat-cell *matCellDef="let element"> {{element.valorTransporte}}</td>
+                        <td mat-cell *matCellDef="let element"> {{element.valorTransporte | currency:'BRL':true}}</td>
                     </ng-container>
 
-                    <ng-container matColumnDef="quilometro">
+                    <ng-container matColumnDef="distanciaPercorrido">
                         <th mat-header-cell *matHeaderCellDef> Quil&ocirc;metro</th>
-                        <td mat-cell *matCellDef="let element"> {{element.quilometro}} km</td>
+                        <td mat-cell *matCellDef="let element"> {{element.distanciaPercorrido}} km</td>
                     </ng-container>
 
-                    <ng-container matColumnDef="valorMercadoria">
+                    <ng-container matColumnDef="valorEmMercadoria">
                         <th mat-header-cell *matHeaderCellDef> Valor Carga</th>
-                        <td mat-cell *matCellDef="let element"> {{element.valorMercadoria}}</td>
+                        <td mat-cell *matCellDef="let element"> {{element.valorEmMercadoria | currency:'BRL':true}}</td>
                     </ng-container>
 
-                    <ng-container matColumnDef="pesoTotal">
+                    <ng-container matColumnDef="pesoTransportado">
                         <th mat-header-cell *matHeaderCellDef> Peso Total</th>
-                        <td mat-cell *matCellDef="let element"> {{element.pesoTotal}} kg</td>
+                        <td mat-cell *matCellDef="let element"> {{element.pesoTransportado}} kg</td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="dadosCalculo.tabela.colunms"></tr>
@@ -177,11 +193,16 @@
         </div>
 
         <div class="form-group" style="margin-top: 20px; text-align: right;">
-            <button type="button" mat-flat-button color="primary" (click)="calcularCustoTransporte()"
-            [disabled]="enviarInformacoes || !dadosVia.tabela.data.data.length > 0 || !dadosProdutos.tabela.data.data.length > 0 || !calculoGroup.controls.veiculo.valid">
-                <i class="material-icons">settings_backup_restore</i> Calcular
+            <button type="button" mat-stroked-button color="primary" (click)="resetarFormulario()"
+                    [disabled]="enviarInformacoes">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Limpar
             </button>
-            <button type="button" mat-flat-button color="primary" [disabled]="enviarInformacoes || !calculoGroup.valid">
+            <button type="button" mat-flat-button color="primary" (click)="calcularCustoTransporte()"
+                    [disabled]="enviarInformacoes || !dadosVia.tabela.data.data.length > 0 || !dadosProdutos.tabela.data.data.length > 0 || !calculoGroup.controls.veiculo.valid">
+                <i class="fa fa-calculator" aria-hidden="true"></i> Calcular
+            </button>
+            <button type="button" mat-flat-button color="primary" [disabled]="enviarInformacoes || !calculoGroup.valid"
+                    (click)="salvarCalculo()">
                 <i class="material-icons">done_all</i> Salvar
             </button>
         </div>

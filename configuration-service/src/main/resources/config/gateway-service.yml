@@ -20,26 +20,22 @@ spring:
                 predicates:
                 - Path=/veiculo/**
                 filters:
-                - AddResponseHeader=Access-Control-Allow-Origin, *
                 - RewritePath=/veiculo/(?<path>.*), /veiculo/$\{path}
             -   id: produto-service
                 uri: lb://produto-service
                 predicates:
                 - Path=/produto/**
                 filters:
-                - AddResponseHeader=Access-Control-Allow-Origin, *
                 - RewritePath=/produto/(?<path>.*), /produto/$\{path}
             -   id: transporte-service
                 uri: lb://transporte-service
                 predicates:
                 - Path=/transporte/**
                 filters:
-                - AddResponseHeader=Access-Control-Allow-Origin, *
                 - RewritePath=/transporte/(?<path>.*), /transporte/$\{path}
             -   id: transporte-service
                 uri: lb://transporte-service
                 predicates:
                 - Path=/via/**
                 filters:
-                - AddResponseHeader=Access-Control-Allow-Origin, *
                 - RewritePath=/via/(?<path>.*), /via/$\{path}

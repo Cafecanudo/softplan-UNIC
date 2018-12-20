@@ -13,14 +13,18 @@ import {
     MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule, MatProgressBarModule,
-    MatSelectModule, MatTableModule
+    MatInputModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTableModule
 } from "@angular/material";
 import {ReactiveFormsModule} from "@angular/forms";
 import {registerLocaleData} from "@angular/common";
 
 import localePt from '@angular/common/locales/pt';
 import {HttpClientModule} from "@angular/common/http";
+import {MatSnackBarComponent} from "./core/MatSnackBarComponent";
 
 registerLocaleData(localePt);
 
@@ -28,7 +32,8 @@ registerLocaleData(localePt);
     declarations: [
         AppComponent,
         CaluclarTransporteComponent,
-        NumberDirective
+        NumberDirective,
+        MatSnackBarComponent
     ],
     imports: [
         BrowserModule,
@@ -46,6 +51,7 @@ registerLocaleData(localePt);
         MatIconModule,
         MatTableModule,
         MatProgressBarModule,
+        MatSnackBarModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -58,10 +64,12 @@ registerLocaleData(localePt);
         MatCardModule,
         MatIconModule,
         MatTableModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatSnackBarModule,
     ],
     providers: [
-        {provide: LOCALE_ID, useValue: 'pt-BR'}
+        MatSnackBarComponent,
+        {provide: LOCALE_ID, useValue: 'pt-BR'},
     ],
     bootstrap: [AppComponent],
 })

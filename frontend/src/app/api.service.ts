@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {VeiculoModel} from "./core/models/VeiculoModel";
+import {ViaModel} from "./core/models/ViaModel";
+import {ProdutoModel} from "./core/models/ProdutoModel";
+import {CalculoModel} from "./core/models/CalculoModel";
 
 const endpoint = 'http://localhost:9010';
 const httpOptions = {
@@ -18,16 +21,23 @@ export class ApiService {
     constructor(private httpClient: HttpClient) {
     }
 
-    private extractData(res: Response) {
-        let body = res;
-        return body || {};
+    getVeiculos(): Observable<VeiculoModel[]> {
+        return this.httpClient.get(`${endpoint}/veiculo`);
     }
 
-    getVeiculos(): Observable<any> {
-        return this.httpClient.get(`${endpoint}/veiculo`).pipe(map(this.extractData));
+    getVias(): Observable<ViaModel[]> {
+        return this.httpClient.get(`${endpoint}/via`);
     }
 
-    getVias(): Observable<any> {
-        return this.httpClient.get(`${endpoint}/via`).pipe(map(this.extractData));
+    getProdutos(): Observable<ProdutoModel[]> {
+        return this.httpClient.get(`${endpoint}/produto`);
+    }
+
+    calcularTransporte(dados: any): Observable<CalculoModel> {
+        return this.httpClient.post(`${endpoint}/transporte/calcular`, dados);
+    }
+
+    salvarCalcularTransporte(dados: any): Observable<CalculoModel> {
+        return this.httpClient.post(`${endpoint}/transporte`, dados);
     }
 }
