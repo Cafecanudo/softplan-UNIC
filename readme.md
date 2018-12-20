@@ -21,18 +21,25 @@ Pedimos que realize os exercícios na linguagem Java, podendo utilizar qualquer 
   
 ## Observação  
 Dado ao tempo no desenvolvimento do projeto os testes foram demostrados somente no microserviço [transporte-service](https://github.com/Cafecanudo/softplan-UNIC/tree/master/transporte-service).  
-Testes foram implementado usando **JUnit-5** e **Powermock**.  
-Também não foi e
-[Spring Cloud](https://spring.io/projects/spring-cloud), [Angular 7](https://angular.io/), [Bootstrap](https://getbootstrap.com/), [Material Design](https://material.angular.io/components/table), [Junit5](https://junit.org/junit5/), [PowerMock](http://powermock.github.io/), [Swagger-UI](https://swagger.io/), [MongoDB](https://www.mongodb.com/).  
-
-Informações de Banco de Dados do Mongo já será carregada no momento do start.
-
-#### Horas  
+Testes foram implementado usando **JUnit-5** e **Powermock**. 
+ #### Horas  
  - Sábado: 08:21 horas, 12:48 á 21:09  
  - Domingo:  08:54 horas, 10:33 á 19:27  
  - Segunda: 03:05 horas, 18:34 á 21:39  
  - Terça: 02:47 horas, 18:31 á 21:18  
  **Total:** 23:34  
+ 
+## Foram usando os frameworks/apis:
+[Spring Cloud](https://spring.io/projects/spring-cloud), [Angular 7](https://angular.io/), [Bootstrap](https://getbootstrap.com/), [Material Design](https://material.angular.io/components/table), [Junit5](https://junit.org/junit5/), [PowerMock](http://powermock.github.io/), [Swagger-UI](https://swagger.io/), [MongoDB](https://www.mongodb.com/).  
+
+  
+## Framework de Cloud
+Spring Cloud Netflix Eureka
+Spring Cloud Config
+Spring Cloud Gateway
+
+## Banco de Dados
+	Informações de Banco de Dados do Mongo já será carregada no momento do start.
   
 ## Arquitetura  
 ![enter image description here](frontend/src/images/arquitetura.jpg)
@@ -65,5 +72,14 @@ Dentro da pasta [Frontend](https://github.com/Cafecanudo/softplan-UNIC/tree/mast
 		ng serve 
 Depois acesse [http://localhost:4200/](http://localhost:4200/)
 
+## Melhorias
+- Todos serviços usam modelos simples de processamento e retorno de dados. Implementação de programação reativa melhor os processo/request.
+- **Implementar controle de usuário e senha usando Spring Security e/ou [Keycloak](https://www.keycloak.org/)(Gerenciador de permissões SSO, Single sign-on)
+- **Melhorar os testes para garantir integração.
+
+
+
+
+**Estudo por novas tecnologias deveria ser por Osmose, como não é possível estudamos todos os dias.**
 Obrigado por proporcionar o teste.
 by Wellton S. Barros.
