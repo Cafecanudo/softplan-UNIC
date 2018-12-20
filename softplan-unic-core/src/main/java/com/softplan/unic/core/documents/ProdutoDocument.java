@@ -2,7 +2,6 @@ package com.softplan.unic.core.documents;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -21,7 +20,6 @@ public class ProdutoDocument {
 
     @NotBlank
     @Size(max = 200)
-    @Indexed(unique = true)
     private String nome;
 
     @Size(max = 1000)

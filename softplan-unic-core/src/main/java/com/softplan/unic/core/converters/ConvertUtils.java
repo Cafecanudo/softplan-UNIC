@@ -85,14 +85,14 @@ public class ConvertUtils {
 
         public static RotaBean to(RotaDocument document) {
             return RotaBean.builder()
-                    .kilometros(document.getKilometros())
+                    .quilometros(document.getQuilometros())
                     .via(Transporte.to(document.getVia()))
                     .build();
         }
 
         public static RotaDocument to(RotaBean bean) {
             return RotaDocument.builder()
-                    .kilometros(bean.getKilometros())
+                    .quilometros(bean.getQuilometros())
                     .via(Transporte.to(bean.getVia()))
                     .build();
         }
@@ -102,7 +102,7 @@ public class ConvertUtils {
                     .id(document.getId())
                     .veiculo(Veiculo.to(document.getVeiculo()))
                     .rotas(document.getRotas().stream().map(Transporte::to).collect(Collectors.toList()))
-                    .carga(document.getCarga().stream().map(Transporte::to).collect(Collectors.toList()))
+                    .cargas(document.getCarga().stream().map(Transporte::to).collect(Collectors.toList()))
                     .calculo(Transporte.to(document.getCalculo()))
                     .build();
         }
@@ -112,7 +112,7 @@ public class ConvertUtils {
                     .id(bean.getId())
                     .veiculo(Veiculo.to(bean.getVeiculo()))
                     .rotas(bean.getRotas().stream().map(Transporte::to).collect(Collectors.toList()))
-                    .carga(bean.getCarga().stream().map(Transporte::to).collect(Collectors.toList()))
+                    .carga(bean.getCargas().stream().map(Transporte::to).collect(Collectors.toList()))
                     .calculo(Transporte.to(bean.getCalculo()))
                     .build();
         }

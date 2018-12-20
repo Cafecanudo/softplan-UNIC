@@ -59,9 +59,9 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
     @Override
     public CalculoBean calcular(CalculoTransporteBean bean) {
         validarVeiculo(bean.getVeiculo());
-        validarListaProdutos(bean.getCarga());
+        validarListaProdutos(bean.getCargas());
         validarVias(bean.getRotas());
-        return calcularCustoTransporte(bean.getVeiculo(), bean.getCarga(), bean.getRotas());
+        return calcularCustoTransporte(bean.getVeiculo(), bean.getCargas(), bean.getRotas());
     }
 
     /**
@@ -74,15 +74,19 @@ public class CalcularTransporteServiceImpl implements CalcularTransporteService 
      */
     @Override
     public CalculoBean calcularCustoTransporte(VeiculoBean veiculo, List<ItemBean> carga, List<RotaBean> rotas) {
-        double custoRota = rotas.stream().mapToDouble(rota -> rota.getKilometros() * rota.getVia().getValor())
+        double custoRota = rotas.stream().mapToDouble(rota -> rota.getQuilometros() * rota.getVia().getValor())
                 .sum() * veiculo.getFatorMultiplicador();
+
+        double totalKM = rotas.stream().mapToDouble(rota -> rota.getQuilometros()).sum();
 
         double peso = carga.stream().mapToDouble(item -> item.getQuantidade() * item.getProduto().getPeso()).sum();
         double valorProdutos = carga.stream().mapToDouble(item -> item.getQuantidade() * item.getProduto().getValor()).sum();
-        double distanciaPercorrido = rotas.stream().mapToDouble(rota -> rota.getKilometros()).sum();
+        double distanciaPercorrido = rotas.stream().mapToDouble(rota -> rota.getQuilometros()).sum();
 
         //Calculando excedente
-        custoRota += (((peso / 1000) - 5.0) * 0.02) * 100;
+        if ((peso / 1000) > 5.0) {
+            custoRota += (((peso / 1000) - 5.0) * 0.02) * totalKM;
+        }
         return CalculoBean.builder()
                 .valorTransporte(NumberUtils.arredondarParaCima(custoRota))
                 .pesoTransportado(NumberUtils.arredondarParaCima(peso))

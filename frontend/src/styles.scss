@@ -11,6 +11,26 @@ body, html {
 body {
   background: url("images/background.jpg") no-repeat center;
   background-size: cover;
+  background-attachment: fixed;
+
+  .snackbar-info {
+    background: #2196F3;
+    .mat-button{
+      color: white;
+    }
+  }
+  .snackbar-success {
+    background: #00a046;
+    .mat-button{
+      color: white;
+    }
+  }
+  .snackbar-error {
+    background: #B00020;
+    .mat-button{
+      color: white;
+    }
+  }
 }
 
 .jumbotron.vertical-center {
@@ -39,5 +59,10 @@ body {
       }
     }
   }
+  @media (max-width: 576px) {
+    .mat-cell, .mat-footer-cell {
+      font-size: 12px;
 
+    }
+  }
 }
