@@ -7,9 +7,6 @@
   <img src="https://travis-ci.com/Cafecanudo/softplan-UNIC.svg?branch=develop" alt="Build Status">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=alert_status">
-</a>
-<a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
   <img src="https://sonarcloud.io/api/project_badges/measure?project=Cafecanudo_softplan-UNIC&metric=bugs">
 </a>
 <a href="https://sonarcloud.io/dashboard/index/Cafecanudo_softplan-UNIC">
