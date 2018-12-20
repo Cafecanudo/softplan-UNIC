@@ -2,7 +2,7 @@ package com.softplan.unic.transporte;
 
 import com.softplan.unic.core.clients.ProdutoClient;
 import com.softplan.unic.core.clients.VeiculoClient;
-import com.softplan.unic.transporte.documents.ViaDocument;
+import com.softplan.unic.core.documents.ViaDocument;
 import com.softplan.unic.transporte.repositories.ViaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

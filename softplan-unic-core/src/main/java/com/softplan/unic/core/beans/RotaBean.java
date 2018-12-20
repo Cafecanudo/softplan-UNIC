@@ -24,5 +24,5 @@ public class RotaBean {
 
     @NotNull
     @ApiModelProperty(notes = "Quantidades de KL")
-    private Double kilometros;
+    private Double quilometros;
 }

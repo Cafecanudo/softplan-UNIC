@@ -1,0 +1,68 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("images/background.jpg") no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  .snackbar-info {
+    background: #2196F3;
+    .mat-button{
+      color: white;
+    }
+  }
+  .snackbar-success {
+    background: #00a046;
+    .mat-button{
+      color: white;
+    }
+  }
+  .snackbar-error {
+    background: #B00020;
+    .mat-button{
+      color: white;
+    }
+  }
+}
+
+.jumbotron.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  min-width: 360px;
+  margin-bottom: 0;
+  background: none;
+  padding: 0;
+
+  display: flex;
+  .container {
+    text-align: center;
+    img {
+      width: 40%;
+      max-width: 300px;
+    }
+    form {
+      text-align: initial;
+    }
+    .form-content {
+      background: #ffffffd4 !important;
+      padding: 1.2em !important;
+      button {
+        margin-left: 8px;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    .mat-cell, .mat-footer-cell {
+      font-size: 12px;
+
+    }
+  }
+}

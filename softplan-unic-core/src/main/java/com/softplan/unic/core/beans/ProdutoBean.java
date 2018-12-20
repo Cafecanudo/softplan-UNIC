@@ -24,7 +24,7 @@ public class ProdutoBean {
 
     @ApiModelProperty(notes = "Nome do produto")
     @NotBlank
-    @Size(max = 20, message = "Max 20 characters")
+    @Size(max = 200, message = "Max 200 characters")
     private String nome;
 
     @ApiModelProperty(notes = "URL de imagem")

@@ -37,7 +37,7 @@ public class CalculoTransporteBean {
     @NotNull
     @Valid
     @EqualsAndHashCode.Exclude
-    private List<ItemBean> carga;
+    private List<ItemBean> cargas;
 
     @ApiModelProperty(notes = "calculo")
     private CalculoBean calculo;

@@ -1,6 +1,6 @@
 package com.softplan.unic.produto;
 
-import com.softplan.unic.produto.documents.ProdutoDocument;
+import com.softplan.unic.core.documents.ProdutoDocument;
 import com.softplan.unic.produto.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

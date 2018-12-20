@@ -1,0 +1,54 @@
+{
+  "id": "5c1846407d892292c878ffa8",
+  "veiculo": {
+    "id": "5c17f2b37d8922b84c273b91",
+    "nome": "Caminhão Baú",
+    "fatorMultiplicador": 1.0
+  },
+  "rotas": [
+    {
+      "via": {
+        "id": "5c17f2aa7d89229e1ceb770d",
+        "nome": "Pavimentada",
+        "valor": 0.54
+      },
+      "quilometros": 154.32
+    },
+    {
+      "via": {
+        "id": "5c17f2aa7d89229e1ceb770e",
+        "nome": "Não-pavimentada",
+        "valor": 0.62
+      },
+      "quilometros": 125.55
+    }
+  ],
+  "cargas": [
+    {
+      "produto": {
+        "id": "5c17f2b07d8922b8c00289ed",
+        "nome": "Bloco de Concreto Estrutural Vazado 19x14x39cm Blojaf",
+        "image": "https://cdn.leroymerlin.com.br/products/bloco_de_concreto_estrutural_vazado_19x14x39cm_blojaf_87707571_0001.jpg_300x300.jpg",
+        "peso": 1.0,
+        "valor": 2.99
+      },
+      "quantidade": 2500.0
+    },
+    {
+      "produto": {
+        "id": "5c17f2b07d8922b8c00289ee",
+        "nome": "Bloco Cerâmico Vedação 11,5x14x24cm Jad",
+        "image": "https://cdn.leroymerlin.com.br/products/bloco_ceramico_vedacao_11,5x14x24cm_85394400_7b5c_600x600.jpg",
+        "peso": 1.0,
+        "valor": 0.81
+      },
+      "quantidade": 2500.0
+    }
+  ],
+  "calculo": {
+    "pesoTransportado": 5000.0,
+    "valorTransporte": 161.17,
+    "valorEmMercadoria": 9500.0,
+    "distanciaPercorrido": 279.87
+  }
+}
