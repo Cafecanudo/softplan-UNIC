@@ -37,9 +37,9 @@ o enviroment do **POSTMAN** possui ***Local** que é usado para chamadas diretas
 
   
 ## Framework de Cloud
-Spring Cloud Netflix Eureka
-Spring Cloud Config
-Spring Cloud Gateway
+- Spring Cloud Netflix Eureka
+- Spring Cloud Config
+- Spring Cloud Gateway
 
 ## Banco de Dados
 	Informações de Banco de Dados do Mongo já será carregada no momento do start.
