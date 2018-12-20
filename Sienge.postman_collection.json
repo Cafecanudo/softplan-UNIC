@@ -1,0 +1,567 @@
+{
+	"info": {
+		"_postman_id": "6301d692-e268-41b1-8242-fa770dfd67e6",
+		"name": "Sienge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Autenticar Usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a064311-3053-4038-81fc-108b74180b98",
+								"exec": [
+									"tests[\"Authorization is present\"] = postman.getResponseHeader(\"Authorization\");",
+									"postman.setGlobalVariable(\"TOKEN_USER\", postman.getResponseHeader(\"Authorization\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service}}/api/user",
+							"host": [
+								"{{url-service}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario por Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN_USER}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service}}/api/user/email/cafecanudo@gmail.com",
+							"host": [
+								"{{url-service}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"email",
+								"cafecanudo@gmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN_USER}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "60309f44-b547-4e32-b928-f36c7e5c6ce4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bebe02ff-b38c-498b-96ca-ce2d9412db36",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Veiculo",
+			"item": [
+				{
+					"name": "Listar Veiculos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-veiculo}}/veiculo",
+							"host": [
+								"{{url-service-veiculo}}"
+							],
+							"path": [
+								"veiculo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Veiculo por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-veiculo}}/veiculo/5c16e6d07d8922830419b8c7",
+							"host": [
+								"{{url-service-veiculo}}"
+							],
+							"path": [
+								"veiculo",
+								"5c16e6d07d8922830419b8c7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cad. Veiculo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Caminhão baú\",\n\t\"descricao\": \"Caminho Caçamba 9 tonedas de carga\"\n}"
+						},
+						"url": {
+							"raw": "{{url-service-veiculo}}/veiculo",
+							"host": [
+								"{{url-service-veiculo}}"
+							],
+							"path": [
+								"veiculo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bb7d149f-1a03-4223-a03b-da948b39ea32",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "94f56318-e335-4c6d-b894-de4f1ec34b0b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Listar Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-produto}}/produto",
+							"host": [
+								"{{url-service-produto}}"
+							],
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Produto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-produto}}/produto/:id",
+							"host": [
+								"{{url-service-produto}}"
+							],
+							"path": [
+								"produto",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cad. Produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Simento Saco Roxo\",\n\t\"peso\": 1.0\n}"
+						},
+						"url": {
+							"raw": "{{url-service-produto}}/produto",
+							"host": [
+								"{{url-service-produto}}"
+							],
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Via",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-via}}/via",
+							"host": [
+								"{{url-service-via}}"
+							],
+							"path": [
+								"via"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-via}}/via/:id",
+							"host": [
+								"{{url-service-via}}"
+							],
+							"path": [
+								"via",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Pavimentada\",\n\t\"valor\": 0.54\n}"
+						},
+						"url": {
+							"raw": "{{url-service-via}}/via",
+							"host": [
+								"{{url-service-via}}"
+							],
+							"path": [
+								"via"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a40ca54-00ff-446f-ae0e-8d57b1c9a0ac",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8928b24e-588a-4da1-af73-ad56cdbe1db8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Transporte",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-tran}}/transporte",
+							"host": [
+								"{{url-service-tran}}"
+							],
+							"path": [
+								"transporte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-service-tran}}/transporte/5c1846407d892292c878ffa8",
+							"host": [
+								"{{url-service-tran}}"
+							],
+							"path": [
+								"transporte",
+								"5c1846407d892292c878ffa8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Pavimentada\",\n\t\"valor\": 0.54\n}"
+						},
+						"url": {
+							"raw": "{{url-service-tran}}/transporte",
+							"host": [
+								"{{url-service-tran}}"
+							],
+							"path": [
+								"transporte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Transporte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"veiculo\": {\r\n    \"id\": \"5c17f2b37d8922b84c273b93\",\r\n    \"nome\": \"Carreta\",\r\n    \"fator_multiplicador\": 1.12\r\n  },\r\n  \"rotas\": [\r\n    {\r\n      \"via\": {\r\n        \"id\": \"5c17f2aa7d89229e1ceb770e\",\r\n        \"nome\": \"Não-pavimentada\",\r\n        \"valor\": 0.62\r\n      },\r\n      \"quilometros\": 180\r\n    }\r\n  ],\r\n  \"cargas\": [\r\n    {\r\n      \"produto\": {\r\n        \"id\": \"5c17f2b07d8922b8c00289ed\",\r\n        \"nome\": \"Bloco de Concreto Estrutural Vazado 19x14x39cm Blojaf\",\r\n        \"image\": \"https://cdn.leroymerlin.com.br/products/bloco_de_concreto_estrutural_vazado_19x14x39cm_blojaf_87707571_0001.jpg_300x300.jpg\",\r\n        \"peso\": 1,\r\n        \"valor\": 2.99\r\n      },\r\n      \"quantidade\": \"6000\"\r\n    },\r\n    {\r\n      \"produto\": {\r\n        \"id\": \"5c17f2b07d8922b8c00289ee\",\r\n        \"nome\": \"Bloco Cerâmico Vedação 11,5x14x24cm Jad\",\r\n        \"image\": \"https://cdn.leroymerlin.com.br/products/bloco_ceramico_vedacao_11,5x14x24cm_85394400_7b5c_600x600.jpg\",\r\n        \"peso\": 1,\r\n        \"valor\": 0.81\r\n      },\r\n      \"quantidade\": \"6000\"\r\n    }\r\n  ],\r\n  \"calculo\": null\r\n}"
+						},
+						"url": {
+							"raw": "{{url-service-tran}}/transporte/calcular",
+							"host": [
+								"{{url-service-tran}}"
+							],
+							"path": [
+								"transporte",
+								"calcular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar Calculo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"veiculo\": {\r\n\t\t\"id\": \"5c17f2b37d8922b84c273b91\",\r\n\t\t\"nome\": \"Caminhão Baú\",\r\n\t\t\"descricao\": \"Caminho Caçamba 9 tonedas de carga\",\r\n\t\t\"fator_multiplicador\": 1.0\r\n\t},\r\n\t\"rotas\": [\r\n\t\t{\r\n\t\t\t\"kilometros\": 154.32,\r\n\t\t\t\"via\": {\r\n\t\t\t\t\"id\": \"5c17f2aa7d89229e1ceb770d\",\r\n\t\t\t\t\"nome\": \"Pavimentada\",\r\n\t\t\t\t\"valor\": 0.54\r\n\t\t\t}\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"kilometros\": 125.55,\r\n\t\t\t\"via\": {\r\n\t\t\t\t\"id\": \"5c17f2aa7d89229e1ceb770e\",\r\n\t\t\t\t\"nome\": \"Não-pavimentada\",\r\n\t\t\t\t\"valor\": 0.62\r\n\t\t\t}\r\n\t\t}\r\n\t],\r\n\t\"carga\": [\r\n\t\t{\r\n\t\t\t\"quantidade\": 2500,\r\n\t\t\t\"produto\": {\r\n\t\t\t\t\"id\": \"5c17f2b07d8922b8c00289ed\",\r\n\t\t\t\t\"nome\": \"Bloco de Concreto Estrutural Vazado 19x14x39cm Blojaf\",\r\n\t\t\t\t\"peso\": 1.0,\r\n\t\t\t\t\"valor\": 2.99,\r\n\t\t\t\t\"image\": \"https://cdn.leroymerlin.com.br/products/bloco_de_concreto_estrutural_vazado_19x14x39cm_blojaf_87707571_0001.jpg_300x300.jpg\"\r\n\t\t\t}\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantidade\": 2500,\r\n\t\t\t\"produto\": {\r\n\t\t\t\t\"id\": \"5c17f2b07d8922b8c00289ee\",\r\n\t\t\t\t\"nome\": \"Bloco Cerâmico Vedação 11,5x14x24cm Jad\",\r\n\t\t\t\t\"peso\": 1.0,\r\n\t\t\t\t\"valor\": 0.81,\r\n\t\t\t\t\"image\": \"https://cdn.leroymerlin.com.br/products/bloco_ceramico_vedacao_11,5x14x24cm_85394400_7b5c_600x600.jpg\"\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "{{url-service-tran}}/transporte",
+							"host": [
+								"{{url-service-tran}}"
+							],
+							"path": [
+								"transporte"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a40ca54-00ff-446f-ae0e-8d57b1c9a0ac",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8928b24e-588a-4da1-af73-ad56cdbe1db8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN_USER}}",
+				"type": "string"
+			}
+		]
+	}
+}

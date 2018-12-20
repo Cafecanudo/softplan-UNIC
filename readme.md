@@ -22,6 +22,9 @@ Pedimos que realize os exercícios na linguagem Java, podendo utilizar qualquer 
 ## Observação  
 Dado ao tempo no desenvolvimento do projeto os testes foram demostrados somente no microserviço [transporte-service](https://github.com/Cafecanudo/softplan-UNIC/tree/master/transporte-service).  
 Testes foram implementado usando **JUnit-5** e **Powermock**. 
+ #### Postman
+Dentro da pasta principal tem um arquivo do POSTMAN importação para testes do servicos em Backend. Após a importação
+o enviroment do **POSTMAN** possui ***Local** que é usado para chamadas diretas aos serviços. **Local** é para chamadas usando balanceador Gateway.
  #### Horas  
  - Sábado: 08:21 horas, 12:48 á 21:09  
  - Domingo:  08:54 horas, 10:33 á 19:27  
@@ -47,10 +50,11 @@ Spring Cloud Gateway
 Para executar precisa-se de uma instância do mongodb rodando na maquina para essas configurações:  
 ```mongo  
 spring:  
- data:       mongodb:    
-           database: softplan-unic-sienge    
-           host: localhost    
-           port: 27017  
+    data:
+        mongodb:    
+            database: softplan-unic-sienge    
+            host: localhost    
+            port: 27017  
 ```  
 ##### Build Maven  
 	 mvn clean install -f pom.xml
@@ -61,7 +65,8 @@ Dentro da pasta [Frontend](https://github.com/Cafecanudo/softplan-UNIC/tree/mast
 
 
 #### Iniciando serviços  
- Nesta ordem execute os serviços - donfiguration-service  
+ Nesta ordem execute os serviços
+ - configuration-service  
  - discovery-service  
  - veiculo-service [(Documentação da API)](http://localhost:9012/swagger-ui.html)  
  - produto-service [(Documentação da API)](http://localhost:9013/swagger-ui.html)  
@@ -69,17 +74,18 @@ Dentro da pasta [Frontend](https://github.com/Cafecanudo/softplan-UNIC/tree/mast
  - gateway-service
  - ***Dentro da pasta [Frontend](https://github.com/Cafecanudo/softplan-UNIC/tree/master/frontend) execute:***
  ######
-		ng serve 
+    ng serve 
 Depois acesse [http://localhost:4200/](http://localhost:4200/)
 
 ## Melhorias
 - Todos serviços usam modelos simples de processamento e retorno de dados. Implementação de programação reativa melhor os processo/request.
 - **Implementar controle de usuário e senha usando Spring Security e/ou [Keycloak](https://www.keycloak.org/)(Gerenciador de permissões SSO, Single sign-on)
 - **Melhorar os testes para garantir integração.
+- Existe REST de cadastro para todos os serviços, seria importante implementar suas interfaces de cadastro.
 
+## Finalizando
+**Estudo por novas tecnologias deveria ser por Osmose, como não é possível, estudamos todos os dias.**
 
-
-
-**Estudo por novas tecnologias deveria ser por Osmose, como não é possível estudamos todos os dias.**
 Obrigado por proporcionar o teste.
+
 by Wellton S. Barros.
