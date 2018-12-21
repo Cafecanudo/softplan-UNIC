@@ -3,11 +3,9 @@ package com.softplan.unic.transporte.repositories;
 import com.softplan.unic.core.documents.CalculoTransporteDocument;
 import com.softplan.unic.core.utils.ObjectUtils;
 import org.apache.commons.io.FileUtils;
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -25,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @DisplayName("Test: Calculo transporte.")
 public class CalculoTransporteRepositoryTest {
 
@@ -50,8 +47,8 @@ public class CalculoTransporteRepositoryTest {
 
         assertNotNull(document.getVeiculo(), "Não encontrou veículo");
 
-        assertNotNull(document.getCarga(), "Não encontrou items");
-        assertThat("Lista está vazia.", document.getCarga(), not(equalTo(Collections.EMPTY_MAP)));
+        assertNotNull(document.getCargas(), "Não encontrou items");
+        assertThat("Lista está vazia.", document.getCargas(), not(equalTo(Collections.EMPTY_MAP)));
     }
 
     @Test

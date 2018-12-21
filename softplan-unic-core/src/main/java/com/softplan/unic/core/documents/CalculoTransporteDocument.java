@@ -25,7 +25,7 @@ public class CalculoTransporteDocument {
     private List<RotaDocument> rotas;
 
     @NotNull
-    private List<ItemDocument> carga;
+    private List<ItemDocument> cargas;
 
     @NotNull
     private CalculoDocument calculo;

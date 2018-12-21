@@ -102,7 +102,7 @@ public class ConvertUtils {
                     .id(document.getId())
                     .veiculo(Veiculo.to(document.getVeiculo()))
                     .rotas(document.getRotas().stream().map(Transporte::to).collect(Collectors.toList()))
-                    .cargas(document.getCarga().stream().map(Transporte::to).collect(Collectors.toList()))
+                    .cargas(document.getCargas().stream().map(Transporte::to).collect(Collectors.toList()))
                     .calculo(Transporte.to(document.getCalculo()))
                     .build();
         }
@@ -112,7 +112,7 @@ public class ConvertUtils {
                     .id(bean.getId())
                     .veiculo(Veiculo.to(bean.getVeiculo()))
                     .rotas(bean.getRotas().stream().map(Transporte::to).collect(Collectors.toList()))
-                    .carga(bean.getCargas().stream().map(Transporte::to).collect(Collectors.toList()))
+                    .cargas(bean.getCargas().stream().map(Transporte::to).collect(Collectors.toList()))
                     .calculo(Transporte.to(bean.getCalculo()))
                     .build();
         }
